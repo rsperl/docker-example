@@ -1,0 +1,5 @@
+docker run --rm -it \
+    --entrypoint /bin/bash \
+    -v $PWD/dev.env.sh:/env.sh \
+    -v $PWD/src:/src \
+    espy-docker

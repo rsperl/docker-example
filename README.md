@@ -2,6 +2,7 @@
 
 Docker is a pretty face on linux containers (LXC). LXC can be thought of as chroot on steroids. An LXC container has its users and process table mapped to the host, but will little or no access to the host itself. The container maintainer may share as little or as much between the container and host as appropriate.
 
+
 ## Why Use Containers?
 
 _"It works in dev and test. I don't know why it doesn't work in prod."_
@@ -9,6 +10,28 @@ _"It works in dev and test. I don't know why it doesn't work in prod."_
 A container allows you to bundle all dependencies in a single image. Anything that differs from one environment to another should be controlled by an environment variable. The image that runs in dev/test is the same image that runs in prod. The only difference will be the environment variables.
 
 In other words, the host on which it runs becomes cattle. You only need a server that runs docker.
+
+## Overview of Using Docker
+
+#### Build the image
+
+An image is build from a Dockerfile, which
+* Identifies a base image (i.e, ubuntu, centos, debian)
+* Software to be installed
+* How the image is then configured
+* What (if any) commands to run when the container starts.
+
+All of this is done without modifying the host.
+
+```docker build -t espy-docker .```
+
+Our image could be a web application, an itdeploy daemon, or a one-off script.
+
+#### Run a container from the image
+
+A container runs an image.
+
+```docker run -d espy-docker```
 
 
 ## Docker Workflow
