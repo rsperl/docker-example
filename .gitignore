@@ -1,1 +1,7 @@
-*.env.sh
+# normally you should exclude any file that could contain
+# sensitive information. In this case, it would be the
+# *.env.sh files. For this demo, however, all files will
+# be checked in
+
+
+# *.env.sh
