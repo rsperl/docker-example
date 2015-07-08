@@ -10,6 +10,7 @@ A container allows you to bundle all dependencies in a single image. Anything th
 
 In other words, the host on which it runs becomes cattle. You only need a server that runs docker.
 
+
 ## Docker Workflow
 
 1. Create an env.sh file that contains all the environment-specific values.
@@ -24,3 +25,11 @@ It is helpful to use a Makefile to build, run, and drop into a shell. The Makefi
 * ```make shell ENV=[env]``` - run an ephemeral, interactive image using the environment [env]
 
 The targets run and shell will both look for a file named [env].env.sh and mount it as /env.sh. For instance, if you specify ENV=dev, there should be a file named dev.env.sh in the project's root directory. The shell target will also mount the src directory on /src.
+
+
+## What's the Catch?
+
+* Logging - best to send to syslog and collect from there
+* Monitoring - docker api is good, but google's cadvisor is probably be better
+* Resiliency and scaling - requires a management layer like kubernetes or mesos
+* Config management - requires etcd, consul, vault, etc.
