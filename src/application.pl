@@ -2,6 +2,8 @@
 use strict;
 use Readonly;
 
+$| = 1;
+
 #
 # note that I can reference an env var to specify custom libraries
 # (this could also be done by setting PERL5LIB)

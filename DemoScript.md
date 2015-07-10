@@ -16,6 +16,3 @@
   - cmd in demo_docker_run
 * Run the image with a different environment file
   - cmd in demo_docker_run2
-* Note memory usage
-  - ps aux | grep application.pl # field 6 is RSS, roughly the same as PSS
-  - should be around 13-14m

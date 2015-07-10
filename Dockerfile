@@ -23,33 +23,36 @@ RUN apt-get install -y \
 #
 RUN cpanm --notest \
         Readonly \
-        DateTime
+        DateTime \
+        Mojolicious
 
+ENV APP_DIR=/src
 
 #
 # add your code
 #
-ADD     ./src /src/
+ADD     ./src $APP_DIR
 
 #
 # optional - create and configure a user
 #
-RUN     chmod +x /src/*.sh /src/*.pl; \
-           mkdir -p /src/log /src/tmp; \
+RUN     chmod +x $APP_DIR/*.sh $APP_DIR/*.pl; \
+           mkdir -p $APP_DIR/log $APP_DIR/tmp; \
            groupadd ssodocker; \
            useradd -m -g ssodocker ssodocker ; \
-           chown ssodocker:ssodocker /src/log /src/tmp
+           rm -f $APP_DIR/log/* $APP_DIR/tmp/*; \
+           chown ssodocker:ssodocker $APP_DIR/log $APP_DIR/tmp
 
-COPY   ./src/bashrc /home/ssodocker/.bashrc
+COPY   .$APP_DIR/bashrc /home/ssodocker/.bashrc
 
 USER   ssodocker
 
 #
 # set your working directory
 #
-WORKDIR /src
+WORKDIR $APP_DIR
 
 #
 # what to run when container starts
 #
-ENTRYPOINT /src/entrypoint.sh
+ENTRYPOINT $APP_DIR/entrypoint.sh

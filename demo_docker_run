@@ -1,4 +1,5 @@
 docker run \
     -d \
+    -p 8080:8080 \
     -v $PWD/dev.env.sh:/env.sh \
     espy-docker

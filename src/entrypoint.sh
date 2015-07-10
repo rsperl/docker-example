@@ -1,3 +1,3 @@
 #!/bin/bash
 source /env.sh
-/src/application.pl
+hypnotoad --foreground $APP_DIR/myapp.pl
