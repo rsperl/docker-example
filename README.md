@@ -19,11 +19,12 @@ In other words, the host on which it runs becomes cattle. You only need a server
 
 ## Overview of Using Docker
 
-#### docker host
+#### setting up
 
 * Docker images are similar to raw/iso/ami files. A docker container is similar to a running VM. The first is a template, the second is an instance of the template.
 * Since docker requires certain Linux kernel features, using docker on Mac and Windows requires running a small VM in something like VirtualBox.
 * You may then use the docker client natively from your mac or pc to communicate to the docker host vm.
+* See https://docs.docker.com/ to install docker and docker-machine locally.
 
 
 #### Build the image
