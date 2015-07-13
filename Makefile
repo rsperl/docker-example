@@ -1,9 +1,10 @@
 info:
 	@echo "Usage info"
-	@echo "make build              Build a fresh docker image"
-	@echo "make shell ENV=<env>    Start container in shell"
+	@echo "  make build              Build a fresh docker image"
+	@echo "  make shell ENV=<env>    Start a container in shell"
+	@echo "  make run ENV=<env>      Run a container"
 
-.PHONY: build clean
+.PHONY: build
 
 build:
 	docker build -t espy-docker .
@@ -15,15 +16,13 @@ shell:
 	    -v $$PWD/src:/src \
 	    -v /var/lib/docker:/var/lib/docker \
 	    -p 8080:8080 \
-	    --user root \
 	    espy-docker
 
 run:
 	docker run  \
 	    -d \
 	    --hostname espy-docker \
-	    --name espy-docker1 \
+	    --name espy-docker \
 	    -p 8080:8080 \
-	    --log-opt tag=espy-docker1 \
 	    -v $$PWD/$$ENV.env.sh:/env.sh \
 	    espy-docker
