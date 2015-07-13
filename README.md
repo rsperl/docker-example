@@ -7,7 +7,13 @@ Docker is a pretty face on linux containers (LXC). LXC can be thought of as chro
 
 _"It works in dev and test. I don't know why it doesn't work in prod."_
 
-A container allows you to bundle all dependencies in a single image. Anything that differs from one environment to another should be controlled by an environment variable. The image that runs in dev/test is the same image that runs in prod. The only difference will be the environment variables.
+* A container allows you to bundle all dependencies in a single image.
+* Anything that differs from one environment to another should be controlled by an environment variable.
+    * The image that runs in dev/test is the same image that runs in prod.
+    * The only difference will be the environment variables.
+* A container should do one thing, one thing only.
+    * One process per container
+    * If you think you need supervisord, you're doing it wrong.
 
 In other words, the host on which it runs becomes cattle. You only need a server that runs docker.
 
