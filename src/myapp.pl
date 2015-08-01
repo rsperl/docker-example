@@ -16,7 +16,6 @@ $| = 1;
 
 my $app_dir  = $ENV{APP_DIR};
 my $hostname = hostname;
-my $name     = $ENV{GREET_NAME};
 
 app->config( hypnotoad => { pid_file => "$app_dir/tmp/hypnotoad.pid" });
 
@@ -25,10 +24,14 @@ get '/' => sub {
   my $c = shift;
   my $log = $c->app->log;
   my $debug = $c->param('debug');
+
+  my $name  = $c->param('name') || $ENV{GREET_NAME};
   if( ! defined $debug ) {
       $log->info("debug is not defined by the user");
       $debug = $ENV{DEBUG};
   }
+
+  #$log->error("divide by zero! " . 0/0);
 
   state $count = 0;
   my $data = {

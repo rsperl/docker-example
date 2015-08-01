@@ -7,22 +7,21 @@ info:
 .PHONY: build
 
 build:
-	docker build -t espy-docker .
+	docker build -t my-docker .
 
 shell:
 	docker run --rm -it \
 	    --entrypoint /bin/bash \
 	    -v $$PWD/$$ENV.env.sh:/env.sh \
 	    -v $$PWD/src:/src \
-	    -v /var/lib/docker:/var/lib/docker \
 	    -p 8080:8080 \
-	    espy-docker
+	    my-docker
 
 run:
 	docker run  \
 	    -d \
-	    --hostname espy-docker \
-	    --name espy-docker \
+	    --hostname my-docker \
+	    --name my-docker \
 	    -p 8080:8080 \
 	    -v $$PWD/$$ENV.env.sh:/env.sh \
-	    espy-docker
+	    my-docker

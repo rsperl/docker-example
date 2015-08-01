@@ -4,12 +4,6 @@
 FROM    ubuntu:15.10
 
 #
-# helpful metadata
-#
-MAINTAINER Richard.Sugg@sas.com
-LABEL      com.sas.it.for=espy com.sas.it.desc="demo for espy"
-
-#
 # install software
 #
 RUN apt-get update -y
@@ -38,14 +32,14 @@ ADD     ./src $APP_DIR
 #
 RUN     chmod +x $APP_DIR/*.sh $APP_DIR/*.pl; \
            mkdir -p $APP_DIR/log $APP_DIR/tmp; \
-           groupadd ssodocker; \
-           useradd -m -g ssodocker ssodocker ; \
+           groupadd mydocker; \
+           useradd -m -g mydocker mydocker ; \
            rm -f $APP_DIR/log/* $APP_DIR/tmp/*; \
-           chown ssodocker:ssodocker $APP_DIR/log $APP_DIR/tmp
+           chown mydocker:mydocker $APP_DIR/log $APP_DIR/tmp
 
-COPY   .$APP_DIR/bashrc /home/ssodocker/.bashrc
+COPY   .$APP_DIR/bashrc /home/mydocker/.bashrc
 
-USER   ssodocker
+USER   mydocker
 
 #
 # set your working directory
