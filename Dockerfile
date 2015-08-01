@@ -9,16 +9,12 @@ FROM    ubuntu:15.10
 RUN apt-get update -y
 RUN apt-get install -y \
         build-essential \
-        curl \
-        cpanminus
+        curl
 
 #
 # install perl modules
 #
-RUN cpanm --notest \
-        Readonly \
-        DateTime \
-        Mojolicious
+RUN perl -MCPAN -e "notest install Readonly DateTime Mojolicious"
 
 ENV APP_DIR=/src
 
