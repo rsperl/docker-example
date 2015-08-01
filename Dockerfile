@@ -18,7 +18,6 @@ RUN apt-get install -y \
 RUN cpanm --notest Readonly DateTime Mojolicious
 
 ENV APP_DIR=/src
-USER   mydocker
 
 #
 # add your code
@@ -32,10 +31,13 @@ RUN     chmod +x $APP_DIR/*.sh $APP_DIR/*.pl; \
            mkdir -p $APP_DIR/log $APP_DIR/tmp; \
            groupadd mydocker; \
            useradd -m -g mydocker mydocker ; \
-           rm -f $APP_DIR/log/* $APP_DIR/tmp/*; \
-           chown mydocker:mydocker $APP_DIR/log $APP_DIR/tmp
+           rm -f $APP_DIR/log/* $APP_DIR/tmp/*;
 
-COPY   .$APP_DIR/bashrc /home/mydocker/.bashrc
+COPY   $APP_DIR/bashrc /home/mydocker/.bashrc
+
+RUN    chown -R mydocker:mydocker /home/mydocker $APP_DIR/log $APP_DIR/tmp
+
+USER   mydocker
 
 
 #
