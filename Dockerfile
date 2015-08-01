@@ -9,12 +9,13 @@ FROM    debian:jessie
 RUN apt-get update -y
 RUN apt-get install -y \
         build-essential \
-        curl
+        curl \
+        cpanminus
 
 #
 # install perl modules
 #
-RUN perl -MCPAN -e "notest install Readonly DateTime Mojolicious"
+RUN cpanm --notest Readonly DateTime Mojolicious
 
 ENV APP_DIR=/src
 
