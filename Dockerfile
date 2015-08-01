@@ -18,6 +18,7 @@ RUN apt-get install -y \
 RUN cpanm --notest Readonly DateTime Mojolicious
 
 ENV APP_DIR=/src
+USER   mydocker
 
 #
 # add your code
@@ -36,7 +37,6 @@ RUN     chmod +x $APP_DIR/*.sh $APP_DIR/*.pl; \
 
 COPY   .$APP_DIR/bashrc /home/mydocker/.bashrc
 
-USER   mydocker
 
 #
 # set your working directory
