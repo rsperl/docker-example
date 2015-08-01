@@ -1,7 +1,7 @@
 #
-# start with an ubuntu 15.10 image
+# start with an image
 #
-FROM    ubuntu:15.10
+FROM    debian:jessie
 
 #
 # install software
